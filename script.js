@@ -152,11 +152,19 @@ function addMealFav(mealData) {
 }
 
 searchBtn.addEventListener("click", async () => {
+    // clean container
+    mealsEl.innerHTML = "";
     const search = searchTerm.value;
 
     const meals = await getMealsBySearch(search);
 
-    meals.forEach((meal) => {
-        addMeal(meal);
-    });
+    if(meals) {
+        meals.forEach((meal) => {
+            addMeal(meal);
+        });
+    }
+});
+
+popupCloseBtn.addEventListener("click", () => {
+    mealPopup.classList.add("hidden");
 });
